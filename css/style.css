@@ -1588,6 +1588,10 @@ footer {
   box-shadow: none;
 }
 
+.faq-accordion .accordion-button::after {
+  filter: sepia(1) saturate(2.2) hue-rotate(355deg);
+}
+
 .faq-accordion .accordion-button:not(.collapsed) {
   background: rgba(201,166,70,0.12);
   color: var(--text-primary);
@@ -1703,6 +1707,10 @@ body[data-theme='dark'] .media-reel-player {
 
 body[data-theme='dark'] .faq-accordion .accordion-button:not(.collapsed) {
   background: rgba(201,166,70,0.18);
+}
+
+body[data-theme='dark'] .faq-accordion .accordion-button::after {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(17%) saturate(465%) hue-rotate(356deg) brightness(98%) contrast(88%);
 }
 
 body[data-theme='dark'] .testimonial-card-peach .testimonial-badge {
