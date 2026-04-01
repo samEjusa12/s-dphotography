@@ -158,18 +158,11 @@ header {
 
 .logo .brand-mark {
   display: block;
-  font-size: 2.7rem;
+  font-size: 2.5rem;
   line-height: 0.88;
   letter-spacing: 0.04em;
 }
 
-.logo .brand-subtitle {
-  display: block;
-  margin-top: 0.08rem;
-  font-size: 1.05rem;
-  line-height: 1;
-  letter-spacing: 0.03em;
-}
 .brand-ampersand {
   color: var(--gold);
 }
