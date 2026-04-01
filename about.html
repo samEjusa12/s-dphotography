@@ -8,7 +8,7 @@
     (function () {
       try {
         var storedTheme = localStorage.getItem('sd-theme');
-        var theme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        var theme = storedTheme || 'light';
         document.documentElement.setAttribute('data-theme', theme);
       } catch (error) {
         document.documentElement.setAttribute('data-theme', 'light');
@@ -136,22 +136,6 @@
       <div class="about-shell">
         <div class="about-banner-frame">
           <img src="media/Wedding&Engagement/Wedding&Engagement4.jpg" alt="Wedding portrait captured by S&amp;D Photography" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <section class="media-reel-section" aria-labelledby="media-reel-title">
-      <div class="about-shell media-reel-grid">
-        <div class="media-reel-copy">
-          <p class="about-section-label">Embedded video</p>
-          <h2 id="media-reel-title">A sample behind-the-scenes reel for multimedia presentation.</h2>
-          <p>This section adds an accessible video element so the project includes images, animation, and embedded motion media. Replace this sample clip with your own branded reel before final submission if you have one available.</p>
-        </div>
-        <div class="media-reel-player ratio ratio-16x9">
-          <video controls playsinline preload="metadata" poster="media/Portfolio/Portfolio6.jpg" aria-label="Sample behind-the-scenes video reel">
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-            Your browser does not support embedded video playback.
-          </video>
         </div>
       </div>
     </section>

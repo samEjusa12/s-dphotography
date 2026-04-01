@@ -1533,35 +1533,8 @@ footer {
   border: 1px solid rgba(201,166,70,0.3);
 }
 
-.media-reel-section,
 .faq-section {
   padding: 1rem 0 4rem 0;
-}
-
-.media-reel-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.media-reel-copy {
-  max-width: 34rem;
-}
-
-.media-reel-player {
-  overflow: hidden;
-  border-radius: 1.5rem;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-strong);
-  background: var(--surface-1);
-}
-
-.media-reel-player video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .faq-shell {
@@ -1700,8 +1673,7 @@ body[data-theme='dark'] .contact-tag-list .text-bg-light {
 
 body[data-theme='dark'] .faq-accordion .accordion-item,
 body[data-theme='dark'] .faq-accordion .accordion-button,
-body[data-theme='dark'] .faq-accordion .accordion-body,
-body[data-theme='dark'] .media-reel-player {
+body[data-theme='dark'] .faq-accordion .accordion-body {
   background: var(--surface-1);
 }
 
@@ -1768,10 +1740,6 @@ body[data-theme='dark'] .testimonial-card-green .testimonial-badge {
   .footer-content { flex-direction: column; gap: 1.5rem; }
 }
 @media (max-width: 700px) {
-  .media-reel-grid {
-    grid-template-columns: 1fr;
-  }
-
   .faq-shell {
     width: min(1100px, calc(100% - 2rem));
   }

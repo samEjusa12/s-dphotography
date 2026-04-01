@@ -120,7 +120,7 @@ body {
   box-shadow: var(--shadow-strong);
   overflow: hidden;
   user-select: none;
-  touch-action: pan-y;
+  touch-action: none;
 }
 
 .circular-nav-stage::before {
@@ -157,12 +157,15 @@ body {
 }
 
 .circular-nav-globe {
+  --globe-spin: 0deg;
+  --globe-counter-spin: 0deg;
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(74%, 420px);
+  width: min(62%, 340px);
   aspect-ratio: 1;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  overflow: hidden;
   border-radius: 50%;
   background:
     radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.94), rgba(238, 237, 233, 0.74) 42%, rgba(201, 166, 70, 0.16) 72%, rgba(24, 24, 24, 0.06) 100%);
@@ -181,10 +184,13 @@ body {
   inset: 10%;
   border-radius: 50%;
   border: 1px solid rgba(201, 166, 70, 0.18);
+  transform: rotate(var(--globe-spin));
+  transition: transform 0.35s ease-out;
 }
 
 .circular-nav-globe::after {
   inset: 22%;
+  transform: rotate(var(--globe-counter-spin));
 }
 
 .circular-nav-globe-line {
@@ -192,49 +198,72 @@ body {
   inset: 14%;
   border-radius: 50%;
   border: 1px solid rgba(201, 166, 70, 0.22);
+  transition: transform 0.35s ease-out;
 }
 
 .circular-nav-globe-line-horizontal {
-  transform: scaleY(0.42);
+  transform: rotate(var(--globe-spin)) scaleY(0.58);
 }
 
 .circular-nav-globe-line-vertical {
-  transform: scaleX(0.42);
+  transform: rotate(var(--globe-counter-spin)) scaleX(0.58);
 }
 
 .circular-nav-globe-line-tilt {
-  transform: rotate(-28deg) scaleX(0.62);
+  transform: rotate(calc(-28deg + var(--globe-spin))) scaleX(0.76);
 }
 
-.circular-nav-focus {
+.circular-nav-sparkles {
   position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.circular-nav-sparkle {
+  position: absolute;
+  width: 16px;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.98) 0 24%, rgba(255, 255, 255, 0) 25%),
+    linear-gradient(180deg, rgba(201, 166, 70, 0) 0 22%, rgba(201, 166, 70, 0.9) 23% 77%, rgba(201, 166, 70, 0) 78%),
+    linear-gradient(90deg, rgba(201, 166, 70, 0) 0 22%, rgba(201, 166, 70, 0.9) 23% 77%, rgba(201, 166, 70, 0) 78%);
+  filter: drop-shadow(0 0 10px rgba(201, 166, 70, 0.28));
+  opacity: 0.68;
+  animation: sparkleTwinkle 4.6s ease-in-out infinite;
+}
+
+.circular-nav-sparkle:nth-child(1) {
+  top: 18%;
+  left: 21%;
+  animation-delay: 0s;
+}
+
+.circular-nav-sparkle:nth-child(2) {
+  top: 26%;
+  right: 20%;
+  width: 12px;
+  animation-delay: 0.9s;
+}
+
+.circular-nav-sparkle:nth-child(3) {
+  bottom: 24%;
+  left: 24%;
+  width: 14px;
+  animation-delay: 1.8s;
+}
+
+.circular-nav-sparkle:nth-child(4) {
+  bottom: 18%;
+  right: 23%;
+  width: 18px;
+  animation-delay: 2.7s;
+}
+
+.circular-nav-sparkle:nth-child(5) {
   top: 50%;
-  left: 50%;
-  display: grid;
-  gap: 0.3rem;
-  justify-items: center;
-  width: min(64%, 240px);
-  padding: 1rem 1.1rem;
-  transform: translate(-50%, -50%);
-  border-radius: 1.4rem;
-  background: rgba(255, 255, 255, 0.68);
-  border: 1px solid rgba(201, 166, 70, 0.24);
-  box-shadow: 0 16px 36px rgba(24, 24, 24, 0.08);
-  text-align: center;
-}
-
-.circular-nav-focus-kicker {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.circular-nav-focus-name {
-  font-family: var(--font-heading);
-  font-size: clamp(1.3rem, 2.3vw, 2rem);
-  line-height: 1;
+  left: 14%;
+  width: 10px;
+  animation-delay: 3.4s;
 }
 
 .circular-nav-ring {
@@ -282,7 +311,7 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  opacity: 0.85;
+  opacity: 0;
   transition: opacity 0.3s ease, color 0.3s ease;
 }
 
@@ -306,6 +335,19 @@ body {
   background: linear-gradient(145deg, var(--gold), #ae8930);
   box-shadow: 0 22px 44px rgba(201, 166, 70, 0.28), 0 18px 34px rgba(24, 24, 24, 0.18);
   filter: brightness(1.05);
+}
+
+@keyframes sparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scale(0.72) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08) rotate(45deg);
+  }
 }
 
 .circular-nav-controls {
@@ -359,7 +401,11 @@ body {
   }
 
   .circular-nav-globe {
-    width: min(78%, 360px);
+    width: min(58%, 280px);
+  }
+
+  .circular-nav-sparkle:nth-child(5) {
+    left: 11%;
   }
 }
 
@@ -378,12 +424,16 @@ body {
   }
 
   .circular-nav-globe {
-    width: min(82%, 280px);
+    width: min(52%, 200px);
   }
 
-  .circular-nav-focus {
-    width: min(72%, 200px);
-    padding: 0.8rem 0.9rem;
+  .circular-nav-sparkle {
+    width: 12px;
+  }
+
+  .circular-nav-sparkle:nth-child(2),
+  .circular-nav-sparkle:nth-child(5) {
+    width: 9px;
   }
 
   .circular-nav-controls {
